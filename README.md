@@ -32,3 +32,9 @@ rails g controller Todos
 rails g controller Items
 
 mkdir spec/support && touch spec/support/request_spec_helper.rb
+
+$ rails g model User name:string email:string password_digest:string
+# run the migrations
+$ rails db:migrate
+# make sure the test environment is ready
+$ rails db:test:prepare
