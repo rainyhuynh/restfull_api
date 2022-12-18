@@ -38,3 +38,5 @@ $ rails g model User name:string email:string password_digest:string
 $ rails db:migrate
 # make sure the test environment is ready
 $ rails db:test:prepare
+
+rails g controller Users
