@@ -74,3 +74,22 @@ http :3000/todos Accept:'application/vnd.todos.v2+json' Authorization:'ey...AWH3
 rails g controller v2/todos
 
 rails g serializer todo
+
+
+##Increment Rails App Version
+https://medium0.com/@eibrahim/increment-rails-app-version-51ca595b7342
+
+rails generate task create_version
+
+lib/tasks/create_version.rake
+
+task :create_version do
+  desc "create VERSION.  Use MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION to override defaults"
+  version_file = "#{Rails.root}/config/initializers/version.rb"
+  major = ENV["MAJOR_VERSION"] || 1
+  minor = ENV["MINOR_VERSION"] || 1
+  build = ENV["BUILD_VERSION"] || `git describe --always --tags`
+  version_string = "VERSION = #{[major.to_s, minor.to_s, build.strip]}\n"
+  File.open(version_file, "w") {|f| f.print(version_string)}
+  $stderr.print(version_string)
+end

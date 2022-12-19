@@ -4,7 +4,12 @@ class ApplicationController < ActionController::API
 
     #called before every action on controllers
     before_action :authorize_request
+    skip_before_action :authorize_request, only: :version
     attr_reader :current_user
+
+    def version
+        render json: {version: VERSION.join(".")}
+    end
 
     private
 
