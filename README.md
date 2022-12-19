@@ -40,3 +40,37 @@ $ rails db:migrate
 $ rails db:test:prepare
 
 rails g controller Users
+
+# Attempt to access API without a token
+http :3000/todos
+
+# Signup a new user - get token from here
+http :3000/signup name=ash email=ash@email.com password=foobar password_confirmation=foobar
+
+
+# Get new user todos
+http :3000/todos \
+Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0ODg5MDEyNjR9.7txvLgDzFdX5NIUGYb3W45oNIXinwB_ITu3jdlG5Dds'
+
+
+# create todo for new user
+http POST :3000/todos title=Beethoven \
+Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0ODg5MDEyNjR9.7txvLgDzFdX5NIUGYb3W45oNIXinwB_ITu3jdlG5Dds'
+
+
+# Get create todos
+http :3000/todos \
+Authorization:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE0ODg5MDEyNjR9.7txvLgDzFdX5NIUGYb3W45oNIXinwB_ITu3jdlG5Dds'
+
+# get auth token
+http :3000/auth/login email=foo@bar.com password=foobar
+
+# get todos from API v1
+http :3000/todos Accept:'application/vnd.todos.v1+json' Authorization:'ey...AWH3FNTd3T0jMB7HnLw2bYQbK0g'
+
+# attempt to get from API v2
+http :3000/todos Accept:'application/vnd.todos.v2+json' Authorization:'ey...AWH3FNTd3T0jMB7HnLw2bYQbK0g'
+
+rails g controller v2/todos
+
+rails g serializer todo
