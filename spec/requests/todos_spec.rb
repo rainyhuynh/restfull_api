@@ -10,7 +10,7 @@ RSpec.describe 'Todos API', type: :request do
     #Test suite for GET /todos
     describe 'GET /todos' do 
         #make HTTP get request before each example
-        before { get '/todos', params: {}, headers: headers}
+        before { get '/todos', params: {page: 1, per_page: 10}, headers: headers}
 
         it 'returns todos' do
             #Note 'json' is a custim helper to parse JSON response
