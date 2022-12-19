@@ -93,3 +93,16 @@ task :create_version do
   File.open(version_file, "w") {|f| f.print(version_string)}
   $stderr.print(version_string)
 end
+
+# Gemfile
+https://github.com/rswag/rswag
+
+gem 'rswag-api'
+gem 'rswag-ui'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rswag-specs'
+end
+
+rails g rswag:install
