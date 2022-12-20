@@ -106,3 +106,29 @@ group :development, :test do
 end
 
 rails g rswag:install
+
+Or run the install generators for each package separately if you installed Rswag as separate gems, as indicated above:
+
+rails g rswag:api:install
+rails g rswag:ui:install
+RAILS_ENV=test rails g rswag:specs:install
+
+
+Generate the Swagger JSON file(s)
+
+rake rswag:specs:swaggerize
+This common command is also aliased as rake rswag.
+
+Or if you installed your gems separately:
+
+RAILS_ENV=test rails rswag
+
+
+rake rswag:specs:swaggerize PATTERN="spec/swagger/api/todos_spec.rb"
+
+
+Add gem rubocop => is a Ruby static code analyzer (a.k.a. linter) and code formatter.
+gem 'rubocop', require: false
+
+$ cd my/cool/ruby/project
+$ rubocop

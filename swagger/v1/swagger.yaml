@@ -1,0 +1,142 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/todos/{todo_id}/items":
+    parameters:
+    - name: todo_id
+      in: path
+      description: todo_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list items
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create item
+      responses:
+        '200':
+          description: successful
+  "/todos/{todo_id}/items/{id}":
+    parameters:
+    - name: todo_id
+      in: path
+      description: todo_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show item
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update item
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update item
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete item
+      responses:
+        '200':
+          description: successful
+  "/todos":
+    get:
+      summary: list todos
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create todo
+      responses:
+        '200':
+          description: successful
+  "/todos/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+    get:
+      summary: show todo
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: "#/definitions/Todo"
+    patch:
+      summary: update todo
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update todo
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: "#/definitions/Todo"
+        '422':
+          description: "Error: Unprocessable Entity"
+    delete:
+      summary: delete todo
+      responses:
+        '200':
+          description: successful
+components:
+  schemas:
+  sercuritySchemas:
+    REQUIRED_AcceptLanguaeHeader:
+      type: apikey
+      in: header
+      name: Accept-Language
+      description: REQUIRED Accept-Language header param
+    bearerAuth:
+      type: http
+      schema: bearer
+      bearerFormat: JWT
+      basicAuth:
+        type: http
+        scheme: basic
+
+security:
+- REQUIRED_AcceptLanguaeHeader: []
+  bearerAuth: []
+  basicAuth: []
+
+servers:
+- url: "{schema}://{defaultHost}"
+  variables:
+    defaultHost:
+      default: localhost:3000
+    schema:
+      default: http
+      enum:
+        - http
+        - https
+
+definitions:
+  Todo:
+    type: object
+    description: Todo model.
+    properties:
+      id:
+        type: int
+      title:
+        type: string

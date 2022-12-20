@@ -55,3 +55,4 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'faker'
 gem 'rswag-api'
 gem 'rswag-ui'
+gem 'rubocop', require: false
